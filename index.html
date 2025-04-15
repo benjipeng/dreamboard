@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dreamboard</title>
+  <link rel="stylesheet" href="./src/styles/main.css">
+</head>
+<body class="bg-background-light dark:bg-background-dark transition-colors duration-300">
+  <header id="app-header" class="fixed top-0 w-full z-10"></header>
+  
+  <main class="w-full h-screen flex flex-col">
+    <div id="toolbar" class="p-4 flex items-center justify-between"></div>
+    <div id="canvas-container" class="flex-1 relative overflow-hidden"></div>
+  </main>
+  
+  <script type="module" src="./src/main.ts"></script>
+</body>
+</html>
