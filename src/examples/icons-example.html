@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lucide Icons Examples</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .examples {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .example {
+      padding: 20px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+    }
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .icon-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      border-radius: 8px;
+      background-color: #f8fafc;
+      cursor: pointer;
+    }
+    .icon-item:hover {
+      background-color: #e2e8f0;
+    }
+    .icon-item p {
+      margin-top: 8px;
+      font-size: 12px;
+      text-align: center;
+    }
+    h1, h2, h3 {
+      margin-top: 0;
+    }
+    pre {
+      background-color: #f1f5f9;
+      padding: 12px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lucide Icons Examples</h1>
+  <p>This page demonstrates different ways to use Lucide icons in a TypeScript project.</p>
+
+  <div class="examples">
+    <div class="example">
+      <h2>Method 1: Using data-lucide attribute</h2>
+      <p>This is the simplest way to use Lucide icons. Just add a data-lucide attribute with the icon name.</p>
+      <pre>&lt;i data-lucide="home"&gt;&lt;/i&gt;</pre>
+      <div class="icon-grid">
+        <div class="icon-item">
+          <i data-lucide="home"></i>
+          <p>home</p>
+        </div>
+        <div class="icon-item">
+          <i data-lucide="settings"></i>
+          <p>settings</p>
+        </div>
+        <div class="icon-item">
+          <i data-lucide="user"></i>
+          <p>user</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="example">
+      <h2>Method 2: Using data-lucide with custom attributes</h2>
+      <p>You can customize the icon size, color, and stroke width.</p>
+      <pre>&lt;i data-lucide="alert-circle" data-lucide-size="32" data-lucide-color="red" data-lucide-stroke-width="1.5"&gt;&lt;/i&gt;</pre>
+      <div class="icon-grid">
+        <div class="icon-item">
+          <i data-lucide="alert-circle" data-lucide-size="32" data-lucide-color="red"></i>
+          <p>alert-circle</p>
+        </div>
+        <div class="icon-item">
+          <i data-lucide="check-circle" data-lucide-size="32" data-lucide-color="green"></i>
+          <p>check-circle</p>
+        </div>
+        <div class="icon-item">
+          <i data-lucide="info" data-lucide-size="32" data-lucide-color="blue"></i>
+          <p>info</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="example">
+      <h2>Method 3: Dynamically created with JavaScript</h2>
+      <p>Icons can also be created dynamically using the createIcon utility.</p>
+      <pre>const icon = createIcon('github', { size: 24 });</pre>
+      <div id="dynamic-icons" class="icon-grid">
+        <!-- Will be filled by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    // Replace all elements with data-lucide attribute
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      
+      // For Method 3 example: Dynamically create icons
+      const container = document.getElementById('dynamic-icons');
+      const iconNames = ['github', 'twitter', 'facebook'];
+      
+      iconNames.forEach(name => {
+        const item = document.createElement('div');
+        item.className = 'icon-item';
+        
+        // Create a container for the SVG
+        const iconContainer = document.createElement('div');
+        
+        // Use the Lucide library to create the icon
+        const icon = lucide[name]();
+        iconContainer.innerHTML = icon;
+        
+        // Add the name
+        const text = document.createElement('p');
+        text.textContent = name;
+        
+        // Append to the DOM
+        item.appendChild(iconContainer);
+        item.appendChild(text);
+        container.appendChild(item);
+      });
+    });
+  </script>
+</body>
+</html> 

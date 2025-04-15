@@ -1,6 +1,6 @@
 // src/main.ts
-import { Header } from './components/header';
-import { CanvasBoard } from './components/canvas-board';
+import { Header, Toolbar, CanvasBoard } from './components';
+import { replaceElements } from './utils';
 import './styles/main.css';
 
 // Initialize components
@@ -8,6 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Setup header
   const header = new Header();
   header.mount(document.querySelector('#app-header')!);
+
+  // Setup toolbar
+  const toolbar = new Toolbar();
+  toolbar.mount(document.querySelector('#toolbar')!);
 
   // Setup canvas board
   const canvasContainer = document.querySelector('#canvas-container')!;
@@ -17,4 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('themechange', () => {
     board.render();
   });
+
+  // Replace any elements with data-lucide attribute
+  replaceElements();
 });

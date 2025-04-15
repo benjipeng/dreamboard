@@ -1,7 +1,7 @@
 // src/components/canvas-board.ts
 import { UIComponent } from './ui-component';
-import { BoardItem } from '../models/board-item';
-import { DragHandler } from '../utils/drag-handler';
+import { BoardItem } from '../models';
+import { DragHandler } from '../utils';
 
 export class CanvasBoard extends UIComponent {
     private canvas: HTMLCanvasElement;
@@ -11,9 +11,12 @@ export class CanvasBoard extends UIComponent {
 
     constructor(parent: HTMLElement) {
         super('div', {
-            classes: ['w-full', 'h-full', 'relative'],
-            parent
+            classes: 'w-full h-full relative'
         });
+
+        if (parent) {
+            parent.appendChild(this.element);
+        }
 
         this.canvas = document.createElement('canvas');
         this.canvas.className = 'absolute inset-0 w-full h-full';
